@@ -1,0 +1,24 @@
+{
+  "name": "vite-plugin-uniwebviewjs-ssr",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "uni-webview-js在vite的SSR（或SSG）下的使用解决方案",
+  "main": "index.js",
+  "repository": "https://github.com/censujiang/vite-plugin-uniwebviewjs-ssr",
+  "author": "江程训 <dfjsiou@qq.com>",
+  "keywords": [
+    "vite",
+    "uni-app",
+    "uniapp",
+    "uni-webview-js",
+    "ssr",
+    "ssg"
+  ],
+  "license": "Apache License 2.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@dcloudio/uni-webview-js": "^0.0.3"
+  }
+}
