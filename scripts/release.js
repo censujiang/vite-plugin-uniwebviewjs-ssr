@@ -1,5 +1,5 @@
-const packageJson = require('../package.json');
-const shell = require('shelljs');
+import shell from 'shelljs';
+import packageJson from '../package.json' assert { type: "json" };
 
 shell.exec('npm run tsc');
 shell.exec('npm run build');

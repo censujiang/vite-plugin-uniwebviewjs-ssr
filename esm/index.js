@@ -16,7 +16,6 @@ export function uniWebviewJS() {
             if (config.env.VITE_SSR === 'true' || config.env.VITE_SSR === true) {
                 isSSR = true;
             }
-            console.log(config);
         }
     };
 }
