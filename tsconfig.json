@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "node",
+    "paths": {
+      "@dcloudio/uni-webview-js": ["node_modules/@dcloudio/uni-webview-js"]
+    },
+		"baseUrl": "./",
+		"noImplicitAny": false,
+		"rootDir": "./src",
+    "outDir": "./esm",
+		"strict":false,
+    "noEmitOnError":false,
+		"declaration": true,
+		"declarationDir": "./types",
+	},
+	"include": [
+		"src//*.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"/*.d.ts",
+		"/types/*.d.ts"
+	],
+}
