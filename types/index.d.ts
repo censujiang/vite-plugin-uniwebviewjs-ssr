@@ -3,11 +3,11 @@ export declare function uniWebviewJS(): {
     configResolved(config: any): void;
 };
 export declare const uni: {
-    getEnv: (func: any) => any;
-    postMessage: (value: any) => any;
-    navigateTo: (value: object) => any;
-    navigateBack: (value: object) => any;
-    redirectTo: (value: object) => any;
-    reLaunch: (value: object) => any;
-    switchTab: (value: object) => any;
+    getEnv: (c: any) => Promise<any>;
+    postMessage: (c: any) => Promise<any>;
+    navigateTo: (c: any) => Promise<any>;
+    navigateBack: (c: any) => Promise<any>;
+    redirectTo: (c: any) => Promise<any>;
+    reLaunch: (c: any) => Promise<any>;
+    switchTab: (c: any) => Promise<any>;
 };

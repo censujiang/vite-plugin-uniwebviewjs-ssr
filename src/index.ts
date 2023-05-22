@@ -1,7 +1,5 @@
 //name: vite-plugin-uniwebviewjs-ssr
 //author: censujiang
-import uniOrigin from '@dcloudio/uni-webview-js'
-
 let isSSR = false
 //导出一个插件函数以供获取vite的import.meta.env.SSR环境变量
 export function uniWebviewJS() {
@@ -9,46 +7,68 @@ export function uniWebviewJS() {
     name: 'vite-plugin-uniwebviewjs-ssr',
     //挂载后自动获取vite的import.meta.env.SSR环境变量
     configResolved(config: any) {
-      isSSR = config.isSSR
+      if (config.env.SSR === 'true' || config.env.SSR === true) {
+        isSSR = true
+      }
+      if(config.env.VITE_SSG === 'true' || config.env.VITE_SSG === true){
+        isSSR = true
+      }
+      if(config.env.VITE_SSR === 'true' || config.env.VITE_SSR === true){
+        isSSR = true
+      }
     }
   }
 }
 
 //导出一个对象，包含了uni的getEnv、postMessage、navigateTo、navigateBack、redirectTo、reLaunch、switchTab方法
 export const uni = {
-  getEnv: (func: any) => {
+  getEnv: (c: any) => {
     if (!isSSR) {
-      return uni.getEnv(func)
+      return import('@dcloudio/uni-webview-js').then((res) => {
+        return res.default.getEnv(c);
+      });
     }
   },
-  postMessage: (value: any) => {
+  postMessage: (c: any) => {
     if (!isSSR) {
-      return uniOrigin.postMessage(value)
+      return import('@dcloudio/uni-webview-js').then((res) => {
+        return res.default.postMessage(c);
+      });
     }
   },
-  navigateTo: (value: object) => {
+  navigateTo: (c: any) => {
     if (!isSSR) {
-      return uniOrigin.navigateTo(value)
+      return import('@dcloudio/uni-webview-js').then((res) => {
+        return res.default.navigateTo(c);
+      })
     }
   },
-  navigateBack: (value: object) => {
+  navigateBack: (c: any) => {
     if (!isSSR) {
-      return uniOrigin.navigateBack(value)
+      return import('@dcloudio/uni-webview-js').then((res) => {
+        return res.default.navigateBack(c);
+      })
     }
   },
-  redirectTo: (value: object) => {
+  redirectTo: (c: any) => {
     if (!isSSR) {
-      return uniOrigin.redirectTo(value)
+      return import('@dcloudio/uni-webview-js').then((res) => {
+        return res.default.redirectTo(c);
+      })
     }
   },
-  reLaunch: (value: object) => {
+  reLaunch: (c: any) => {
     if (!isSSR) {
-      return uniOrigin.reLaunch(value)
+      return import('@dcloudio/uni-webview-js').then((res) => {
+        return res.default.reLaunch(c);
+      })
     }
   },
-  switchTab: (value: object) => {
+  switchTab: (c: any) => {
     if (!isSSR) {
-      return uniOrigin.switchTab(value)
+      return import('@dcloudio/uni-webview-js').then((res) => {
+        return res.default.switchTab(c);
+      })
     }
-  }
+  },
 }

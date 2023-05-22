@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { uni } from 'vite-plugin-uniwebviewjs-ssr'
 defineOptions({
   name: 'IndexPage',
 })
@@ -12,6 +13,11 @@ function go() {
 }
 
 const { t } = useI18n()
+
+const env = ref('')
+uni.getEnv((res) => {
+  env.value = res
+})
 </script>
 
 <template>
@@ -27,23 +33,17 @@ const { t } = useI18n()
     <p>
       <em text-sm opacity-75>{{ t('intro.desc') }}</em>
     </p>
+    <p>
+      <small>{{ env }}</small>
+    </p>
 
     <div py-4 />
 
-    <TheInput
-      v-model="name"
-      :placeholder="t('intro.whats-your-name')"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
+    <TheInput v-model="name" :placeholder="t('intro.whats-your-name')" autocomplete="false" @keydown.enter="go" />
     <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
 
     <div>
-      <button
-        m-3 text-sm btn
-        :disabled="!name"
-        @click="go"
-      >
+      <button m-3 text-sm btn :disabled="!name" @click="go">
         {{ t('button.go') }}
       </button>
     </div>
