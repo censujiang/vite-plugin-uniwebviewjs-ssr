@@ -3,7 +3,7 @@
 This document is available in multiple languages
 
 - [English](#english)
-- [Chinese](#Chinese/中文)
+- [Chinese](#chinese中文)
 
 ## English
 
