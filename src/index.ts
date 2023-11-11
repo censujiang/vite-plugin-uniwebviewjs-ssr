@@ -24,49 +24,49 @@ export function uniWebviewJS() {
 export const uni = {
   getEnv: (c: any) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('@dcloudio/uni-webview-js' as any).then((res) => {
         return res.default.getEnv(c);
       });
     }
   },
   postMessage: (c: any) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('@dcloudio/uni-webview-js' as any).then((res) => {
         return res.default.postMessage(c);
       });
     }
   },
   navigateTo: (c: any) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('@dcloudio/uni-webview-js' as any).then((res) => {
         return res.default.navigateTo(c);
       })
     }
   },
   navigateBack: (c: any) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('@dcloudio/uni-webview-js' as any).then((res) => {
         return res.default.navigateBack(c);
       })
     }
   },
   redirectTo: (c: any) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('@dcloudio/uni-webview-js' as any).then((res) => {
         return res.default.redirectTo(c);
       })
     }
   },
   reLaunch: (c: any) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('@dcloudio/uni-webview-js' as any).then((res) => {
         return res.default.reLaunch(c);
       })
     }
   },
   switchTab: (c: any) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('@dcloudio/uni-webview-js' as any).then((res) => {
         return res.default.switchTab(c);
       })
     }

@@ -37,7 +37,9 @@
     "@dcloudio/uni-webview-js": "^0.0.3"
   },
   "devDependencies": {
+    "@types/node": "^20.9.0",
     "shelljs": "^0.8.5",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "unbuild": "^2.0.0"
   }
 }
