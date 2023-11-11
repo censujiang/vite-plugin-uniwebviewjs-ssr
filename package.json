@@ -1,9 +1,10 @@
 {
   "name": "vite-plugin-uniwebviewjs-ssr",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "description": "uni-webview-js在vite的SSR（或SSG）下的使用解决方案",
   "main": "/esm/index.js",
+  "module": "/esm/index.js",
   "author": "江程训 <dfjsiou@qq.com>",
   "keywords": [
     "vite",
