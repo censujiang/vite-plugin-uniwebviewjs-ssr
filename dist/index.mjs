@@ -19,49 +19,49 @@ function uniWebviewJS() {
 const uni = {
   getEnv: (c) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
         return res.default.getEnv(c);
       });
     }
   },
   postMessage: (c) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
         return res.default.postMessage(c);
       });
     }
   },
   navigateTo: (c) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
         return res.default.navigateTo(c);
       });
     }
   },
   navigateBack: (c) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
         return res.default.navigateBack(c);
       });
     }
   },
   redirectTo: (c) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
         return res.default.redirectTo(c);
       });
     }
   },
   reLaunch: (c) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
         return res.default.reLaunch(c);
       });
     }
   },
   switchTab: (c) => {
     if (!isSSR) {
-      return import('@dcloudio/uni-webview-js').then((res) => {
+      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
         return res.default.switchTab(c);
       });
     }

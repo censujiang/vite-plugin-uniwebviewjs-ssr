@@ -4,5 +4,8 @@
     "dcloudio",
     "uniapp",
     "uniwebviewjs"
+  ],
+  "i18n-ally.localesPaths": [
+    "demo/locales"
   ]
 }
