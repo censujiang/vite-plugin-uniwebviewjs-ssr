@@ -77,3 +77,7 @@ export const uni: UniWebviewJS = {
     }
   }
 }
+
+export {
+  type UniWebviewJS,
+}

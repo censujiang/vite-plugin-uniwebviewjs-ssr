@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-uniwebviewjs-ssr",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "type": "module",
   "description": "uni-webview-js在vite的SSR（或SSG）下的使用解决方案",
   "exports": {

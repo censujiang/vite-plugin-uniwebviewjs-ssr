@@ -71,4 +71,4 @@ declare function uniWebviewJS(): {
 };
 declare const uni: UniWebviewJS;
 
-export { uni, uniWebviewJS };
+export { type UniWebviewJS, uni, uniWebviewJS };
