@@ -1,69 +1,64 @@
 let isSSR = false;
+let _hybridModule = null;
 function uniWebviewJS() {
   return {
     name: "vite-plugin-uniwebviewjs-ssr",
-    //挂载后自动获取vite的import.meta.env.SSR环境变量
     configResolved(config) {
-      if (config.env.SSR === "true" || config.env.SSR === true) {
-        isSSR = true;
-      }
-      if (config.env.VITE_SSG === "true" || config.env.VITE_SSG === true) {
-        isSSR = true;
-      }
-      if (config.env.VITE_SSR === "true" || config.env.VITE_SSR === true) {
+      const env = config.env;
+      if (env.SSR === "true" || env.SSR === true || env.VITE_SSR === "true" || env.VITE_SSR === true || env.VITE_SSG === "true" || env.VITE_SSG === true) {
         isSSR = true;
       }
     }
   };
 }
+async function loadHybridModule() {
+  if (!_hybridModule) {
+    const res = await import('./chunks/webview.mjs').then(function (n) { return n.w; });
+    _hybridModule = res.default;
+  }
+  return _hybridModule;
+}
 const uni = {
-  getEnv: (c) => {
+  async getEnv(callback) {
     if (!isSSR) {
-      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
-        return res.default.getEnv(c);
-      });
+      const mod = await loadHybridModule();
+      mod.getEnv(callback);
     }
   },
-  postMessage: (c) => {
+  async postMessage(message) {
     if (!isSSR) {
-      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
-        return res.default.postMessage(c);
-      });
+      const mod = await loadHybridModule();
+      return mod.postMessage(message);
     }
   },
-  navigateTo: (c) => {
+  async navigateTo(options) {
     if (!isSSR) {
-      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
-        return res.default.navigateTo(c);
-      });
+      const mod = await loadHybridModule();
+      return mod.navigateTo(options);
     }
   },
-  navigateBack: (c) => {
+  async navigateBack(options) {
     if (!isSSR) {
-      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
-        return res.default.navigateBack(c);
-      });
+      const mod = await loadHybridModule();
+      return mod.navigateBack(options);
     }
   },
-  redirectTo: (c) => {
+  async redirectTo(options) {
     if (!isSSR) {
-      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
-        return res.default.redirectTo(c);
-      });
+      const mod = await loadHybridModule();
+      return mod.redirectTo(options);
     }
   },
-  reLaunch: (c) => {
+  async reLaunch(options) {
     if (!isSSR) {
-      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
-        return res.default.reLaunch(c);
-      });
+      const mod = await loadHybridModule();
+      return mod.reLaunch(options);
     }
   },
-  switchTab: (c) => {
+  async switchTab(options) {
     if (!isSSR) {
-      return import('./chunks/hybrid_html_uni.webview.1.5.5.mjs').then(function (n) { return n.h; }).then((res) => {
-        return res.default.switchTab(c);
-      });
+      const mod = await loadHybridModule();
+      return mod.switchTab(options);
     }
   }
 };

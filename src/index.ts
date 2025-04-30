@@ -1,74 +1,79 @@
-//name: vite-plugin-uniwebviewjs-ssr
-//author: censujiang
+// name: vite-plugin-uniwebviewjs-ssr
+// author: censujiang
+
+import type { UniWebviewJS } from './types'
+
 let isSSR = false
-//导出一个插件函数以供获取vite的import.meta.env.SSR环境变量
+let _hybridModule: UniWebviewJS | null = null
+
+// 插件：用于设置 isSSR
 export function uniWebviewJS() {
   return {
     name: 'vite-plugin-uniwebviewjs-ssr',
-    //挂载后自动获取vite的import.meta.env.SSR环境变量
     configResolved(config: any) {
-      if (config.env.SSR === 'true' || config.env.SSR === true) {
-        isSSR = true
-      }
-      if(config.env.VITE_SSG === 'true' || config.env.VITE_SSG === true){
-        isSSR = true
-      }
-      if(config.env.VITE_SSR === 'true' || config.env.VITE_SSR === true){
+      const env = config.env
+      if (
+        env.SSR === 'true' || env.SSR === true ||
+        env.VITE_SSR === 'true' || env.VITE_SSR === true ||
+        env.VITE_SSG === 'true' || env.VITE_SSG === true
+      ) {
         isSSR = true
       }
     }
   }
 }
 
-//导出一个对象，包含了uni的getEnv、postMessage、navigateTo、navigateBack、redirectTo、reLaunch、switchTab方法
-export const uni = {
-  getEnv: (c: any) => {
+// 加载 hybrid_html_uni.webview 模块
+async function loadHybridModule() {
+  if (!_hybridModule) {
+    const res = await import('./webview.js')
+    _hybridModule = res.default
+  }
+  return _hybridModule as UniWebviewJS
+}
+
+// 导出带 SSR 兼容的 uni API
+export const uni: UniWebviewJS = {
+  async getEnv(callback) {
     if (!isSSR) {
-      return import('./hybrid_html_uni.webview.1.5.5.js' as any).then((res) => {
-        return res.default.getEnv(c);
-      });
+      const mod = await loadHybridModule()
+      mod.getEnv(callback)
     }
   },
-  postMessage: (c: any) => {
+  async postMessage(message) {
     if (!isSSR) {
-      return import('./hybrid_html_uni.webview.1.5.5.js' as any).then((res) => {
-        return res.default.postMessage(c);
-      });
+      const mod = await loadHybridModule()
+      return mod.postMessage(message)
     }
   },
-  navigateTo: (c: any) => {
+  async navigateTo(options) {
     if (!isSSR) {
-      return import('./hybrid_html_uni.webview.1.5.5.js' as any).then((res) => {
-        return res.default.navigateTo(c);
-      })
+      const mod = await loadHybridModule()
+      return mod.navigateTo(options)
     }
   },
-  navigateBack: (c: any) => {
+  async navigateBack(options) {
     if (!isSSR) {
-      return import('./hybrid_html_uni.webview.1.5.5.js' as any).then((res) => {
-        return res.default.navigateBack(c);
-      })
+      const mod = await loadHybridModule()
+      return mod.navigateBack(options)
     }
   },
-  redirectTo: (c: any) => {
+  async redirectTo(options) {
     if (!isSSR) {
-      return import('./hybrid_html_uni.webview.1.5.5.js' as any).then((res) => {
-        return res.default.redirectTo(c);
-      })
+      const mod = await loadHybridModule()
+      return mod.redirectTo(options)
     }
   },
-  reLaunch: (c: any) => {
+  async reLaunch(options) {
     if (!isSSR) {
-      return import('./hybrid_html_uni.webview.1.5.5.js' as any).then((res) => {
-        return res.default.reLaunch(c);
-      })
+      const mod = await loadHybridModule()
+      return mod.reLaunch(options)
     }
   },
-  switchTab: (c: any) => {
+  async switchTab(options) {
     if (!isSSR) {
-      return import('./hybrid_html_uni.webview.1.5.5.js' as any).then((res) => {
-        return res.default.switchTab(c);
-      })
+      const mod = await loadHybridModule()
+      return mod.switchTab(options)
     }
-  },
+  }
 }

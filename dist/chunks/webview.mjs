@@ -16,7 +16,7 @@ function getDefaultExportFromCjs (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
 
-var hybrid_html_uni_webview_1_5_5$2 = {exports: {}};
+var webview$2 = {exports: {}};
 
 (function (module, exports) {
 	!function(e, n) {
@@ -101,7 +101,7 @@ var hybrid_html_uni_webview_1_5_5$2 = {exports: {}};
 	  var m = window.qa && /quickapp/i.test(navigator.userAgent);
 	  var f = window.ks && window.ks.miniProgram && /micromessenger/i.test(navigator.userAgent) && /miniProgram/i.test(navigator.userAgent);
 	  var l = window.tt && window.tt.miniProgram && /Lark|Feishu/i.test(navigator.userAgent);
-	  var E = window.jd && window.jd.miniProgram && /micromessenger/i.test(navigator.userAgent) && /miniProgram/i.test(navigator.userAgent);
+	  var E = window.jd && window.jd.miniProgram && /jdmp/i.test(navigator.userAgent);
 	  var x = window.xhs && window.xhs.miniProgram && /xhsminiapp/i.test(navigator.userAgent);
 	  for (var S, h = function() {
 	    window.UniAppJSBridge = true, document.dispatchEvent(new CustomEvent("UniAppJSBridgeReady", { bubbles: true, cancelable: true }));
@@ -155,14 +155,14 @@ var hybrid_html_uni_webview_1_5_5$2 = {exports: {}};
 	      i(S, b) && (P[b] = S[b]);
 	  return P.webView = S, P;
 	}); 
-} (hybrid_html_uni_webview_1_5_5$2));
+} (webview$2));
 
-var hybrid_html_uni_webview_1_5_5Exports = hybrid_html_uni_webview_1_5_5$2.exports;
-const hybrid_html_uni_webview_1_5_5 = /*@__PURE__*/getDefaultExportFromCjs(hybrid_html_uni_webview_1_5_5Exports);
+var webviewExports = webview$2.exports;
+const webview = /*@__PURE__*/getDefaultExportFromCjs(webviewExports);
 
-const hybrid_html_uni_webview_1_5_5$1 = /*#__PURE__*/_mergeNamespaces({
+const webview$1 = /*#__PURE__*/_mergeNamespaces({
 	__proto__: null,
-	default: hybrid_html_uni_webview_1_5_5
-}, [hybrid_html_uni_webview_1_5_5Exports]);
+	default: webview
+}, [webviewExports]);
 
-export { hybrid_html_uni_webview_1_5_5$1 as h };
+export { webview$1 as w };
